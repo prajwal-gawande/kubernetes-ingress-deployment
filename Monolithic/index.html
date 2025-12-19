@@ -1,310 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Multi-Cloud Landing Page — AWS, Azure & GCP</title>
-  <style>
-    :root {
-      /* Shared */
-      --bg: #0a0d14;
-      --text: #f1f5f9;
-      --muted: #a0aec0;
-      --radius: 20px;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;
-    }
-    body {
-      margin: 0;
-      background: linear-gradient(180deg, #0a0d14, #111827);
-      color: var(--text);
-      padding: 20px;
-    }
-    h1, h2, h3, h4 {
-      margin: 0 0 10px 0;
-    }
-    p {
-      margin: 0 0 16px 0;
-      color: var(--muted);
-    }
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-    .wrapper {
-      max-width: 1200px;
-      margin: auto;
-    }
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #333;
-    }
-    .nav h1 {
-      font-weight: 700;
-    }
-    .section {
-      margin: 40px 0;
-      padding: 20px;
-      border-radius: var(--radius);
-      background: rgba(255 255 255 / 0.05);
-      box-shadow: 0 8px 24px rgba(0 0 0 / 0.6);
-    }
-    /* AWS Section */
-    .aws {
-      --brand-color: #FF9900;
-      --brand-bg: rgba(255, 153, 0, 0.15);
-    }
-    .aws .header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-    .aws .logo {
-      width: 40px;
-      height: 40px;
-      background: var(--brand-color);
-      border-radius: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      font-weight: 700;
-      font-family: monospace;
-      font-size: 18px;
-      user-select: none;
-    }
-    .aws h2 {
-      color: var(--brand-color);
-    }
-    .aws .badge {
-      background: var(--brand-color);
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      color: #111;
-      font-weight: 600;
-      display: inline-block;
-      margin-right: 6px;
-      margin-bottom: 6px;
-    }
-
-    /* Azure Section */
-    .azure {
-      --brand-color: #0078D4;
-      --brand-bg: rgba(0, 120, 212, 0.15);
-    }
-    .azure .header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-    .azure .logo {
-      width: 40px;
-      height: 40px;
-      background: var(--brand-color);
-      border-radius: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      font-weight: 700;
-      font-family: monospace;
-      font-size: 18px;
-      user-select: none;
-    }
-    .azure h2 {
-      color: var(--brand-color);
-    }
-    .azure .badge {
-      background: var(--brand-color);
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      color: #111;
-      font-weight: 600;
-      display: inline-block;
-      margin-right: 6px;
-      margin-bottom: 6px;
-    }
-
-    /* GCP Section */
-    .gcp {
-      --brand-color: #4285F4;
-      --brand-bg: rgba(66, 133, 244, 0.15);
-    }
-    .gcp .header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-    .gcp .logo {
-      width: 40px;
-      height: 40px;
-      background: var(--brand-color);
-      border-radius: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      font-weight: 700;
-      font-family: monospace;
-      font-size: 18px;
-      user-select: none;
-    }
-    .gcp h2 {
-      color: var(--brand-color);
-    }
-    .gcp .badge {
-      background: var(--brand-color);
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      color: #111;
-      font-weight: 600;
-      display: inline-block;
-      margin-right: 6px;
-      margin-bottom: 6px;
-    }
-
-    /* Cards for services */
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    .card {
-      background: rgba(255 255 255 / 0.1);
-      border-radius: 12px;
-      padding: 16px;
-      flex: 1 1 300px;
-      box-shadow: 0 4px 14px rgba(0 0 0 / 0.5);
-      transition: transform 0.2s ease;
-    }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 28px rgba(0 0 0 / 0.7);
-    }
-
-    /* Footer */
-    footer {
-      margin-top: 60px;
-      font-size: 14px;
-      color: var(--muted);
-      text-align: center;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .cards {
-        flex-direction: column;
-      }
-    }
-  </style>
+  <title>Multi-Cloud Platform Overview — AWS, Azure & GCP</title>
+  <meta name="description"
+    content="Comprehensive overview of multi-cloud DevOps platform showcasing AWS, Azure, and GCP services." />
+  <link rel="stylesheet" href="../styles.css" />
 </head>
+
 <body>
   <div class="wrapper">
+    <!-- Navigation -->
     <nav class="nav">
-      <h1>Multi-Cloud Landing Page</h1>
-      <div>
-        <!-- Could add links here if needed -->
+      <div class="nav-brand">
+        <div class="nav-logo animate-pulse-glow">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" opacity="0.9" />
+            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" opacity="0.7" />
+            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" opacity="0.5" />
+          </svg>
+        </div>
+        <h1 class="nav-title">Multi-Cloud Platform</h1>
+      </div>
+      <div class="nav-actions">
+        <a href="/" class="btn btn-ghost">← Back to Home</a>
       </div>
     </nav>
 
-    <!-- AWS Section -->
-    <section class="section aws" id="aws">
-      <div class="header">
-        <div class="logo">AWS</div>
-        <h2>AWS Cloud & DevOps</h2>
+    <!-- Hero Section -->
+    <header class="hero" style="grid-template-columns: 1fr;">
+      <div class="hero-content animate-fade-in-up" style="text-align: center; max-width: 800px; margin: 0 auto;">
+        <span class="hero-kicker">
+          Unified Platform • Multi-Cloud • DevOps Excellence
+        </span>
+        <h2 class="hero-title">
+          All Cloud Platforms in One View
+        </h2>
+        <p class="hero-description">
+          Explore comprehensive DevOps capabilities across AWS, Azure, and GCP.
+          Compare services, technologies, and workflows side by side.
+        </p>
       </div>
-      <p><strong>Accelerate delivery with AWS and powerful DevOps practices.</strong></p>
-      <div class="cards">
-        <article class="card">
-          <div class="badge">IaC</div>
-          <div class="badge">CloudFormation</div>
-          <h4>Infrastructure as Code</h4>
-          <p>Automate provisioning using CloudFormation and AWS CDK with version control.</p>
-        </article>
-        <article class="card">
-          <div class="badge">CI/CD</div>
-          <div class="badge">CodePipeline</div>
-          <h4>Continuous Delivery</h4>
-          <p>Build and deploy pipelines with AWS CodePipeline, CodeBuild, and CodeDeploy.</p>
-        </article>
-        <article class="card">
-          <div class="badge">Monitoring</div>
-          <div class="badge">CloudWatch</div>
-          <h4>Observability & Reliability</h4>
-          <p>Set SLIs and SLOs, monitor logs and metrics using CloudWatch and CloudTrail.</p>
-        </article>
+    </header>
+
+    <!-- AWS Section -->
+    <section id="aws" class="section">
+      <div class="card" style="border-left: 4px solid var(--color-aws);">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+          <div
+            style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--color-aws), var(--color-aws-light)); border-radius: 12px; display: grid; place-items: center; color: #1a1a1a; font-weight: 800; font-size: 1.125rem;">
+            AWS</div>
+          <div>
+            <h3 class="text-aws" style="margin: 0; font-size: 1.75rem;">Amazon Web Services</h3>
+            <p style="margin: 0.25rem 0 0 0; color: var(--color-text-muted);">Cloud-native delivery with AWS ecosystem
+            </p>
+          </div>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card" style="background: rgba(255,153,0,0.05);">
+            <div class="badges">
+              <span class="badge badge-aws">IaC</span>
+              <span class="badge badge-aws">CloudFormation</span>
+            </div>
+            <h4 class="card-title">Infrastructure as Code</h4>
+            <p class="card-description">
+              Automate provisioning using CloudFormation and AWS CDK with version control
+            </p>
+          </article>
+
+          <article class="card" style="background: rgba(255,153,0,0.05);">
+            <div class="badges">
+              <span class="badge badge-aws">CI/CD</span>
+              <span class="badge badge-aws">CodePipeline</span>
+            </div>
+            <h4 class="card-title">Continuous Delivery</h4>
+            <p class="card-description">
+              Build and deploy pipelines with AWS CodePipeline, CodeBuild, and CodeDeploy
+            </p>
+          </article>
+
+          <article class="card" style="background: rgba(255,153,0,0.05);">
+            <div class="badges">
+              <span class="badge badge-aws">Monitoring</span>
+              <span class="badge badge-aws">CloudWatch</span>
+            </div>
+            <h4 class="card-title">Observability & Reliability</h4>
+            <p class="card-description">
+              Set SLIs and SLOs, monitor logs and metrics using CloudWatch and CloudTrail
+            </p>
+          </article>
+        </div>
+
+        <div style="margin-top: 1.5rem; text-align: center;">
+          <a href="/aws/" class="btn btn-aws">Explore AWS Platform →</a>
+        </div>
       </div>
     </section>
 
     <!-- Azure Section -->
-    <section class="section azure" id="azure">
-      <div class="header">
-        <div class="logo">AZ</div>
-        <h2>Microsoft Azure & DevOps</h2>
-      </div>
-      <p><strong>Modern cloud-native delivery leveraging Azure's DevOps tools.</strong></p>
-      <div class="cards">
-        <article class="card">
-          <div class="badge">IaC</div>
-          <div class="badge">ARM Templates</div>
-          <h4>Infrastructure as Code</h4>
-          <p>Deploy resources declaratively using ARM templates or Bicep language.</p>
-        </article>
-        <article class="card">
-          <div class="badge">CI/CD</div>
-          <div class="badge">Azure Pipelines</div>
-          <h4>Continuous Delivery</h4>
-          <p>Automate builds and deployments with Azure Pipelines and GitHub Actions.</p>
-        </article>
-        <article class="card">
-          <div class="badge">Monitoring</div>
-          <div class="badge">Azure Monitor</div>
-          <h4>Observability & Reliability</h4>
-          <p>Use Azure Monitor and Log Analytics to track application and infrastructure health.</p>
-        </article>
+    <section id="azure" class="section">
+      <div class="card" style="border-left: 4px solid var(--color-azure);">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+          <div
+            style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--color-azure), var(--color-azure-light)); border-radius: 12px; display: grid; place-items: center; color: white; font-weight: 800; font-size: 1.125rem;">
+            AZ</div>
+          <div>
+            <h3 class="text-azure" style="margin: 0; font-size: 1.75rem;">Microsoft Azure</h3>
+            <p style="margin: 0.25rem 0 0 0; color: var(--color-text-muted);">Enterprise-grade cloud with Azure DevOps
+            </p>
+          </div>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card" style="background: rgba(0,120,212,0.05);">
+            <div class="badges">
+              <span class="badge badge-azure">IaC</span>
+              <span class="badge badge-azure">ARM Templates</span>
+            </div>
+            <h4 class="card-title">Infrastructure as Code</h4>
+            <p class="card-description">
+              Deploy resources declaratively using ARM templates or Bicep language
+            </p>
+          </article>
+
+          <article class="card" style="background: rgba(0,120,212,0.05);">
+            <div class="badges">
+              <span class="badge badge-azure">CI/CD</span>
+              <span class="badge badge-azure">Azure Pipelines</span>
+            </div>
+            <h4 class="card-title">Continuous Delivery</h4>
+            <p class="card-description">
+              Automate builds and deployments with Azure Pipelines and GitHub Actions
+            </p>
+          </article>
+
+          <article class="card" style="background: rgba(0,120,212,0.05);">
+            <div class="badges">
+              <span class="badge badge-azure">Monitoring</span>
+              <span class="badge badge-azure">Azure Monitor</span>
+            </div>
+            <h4 class="card-title">Observability & Reliability</h4>
+            <p class="card-description">
+              Use Azure Monitor and Log Analytics to track application and infrastructure health
+            </p>
+          </article>
+        </div>
+
+        <div style="margin-top: 1.5rem; text-align: center;">
+          <a href="/azure/" class="btn btn-azure">Explore Azure Platform →</a>
+        </div>
       </div>
     </section>
 
     <!-- GCP Section -->
-    <section class="section gcp" id="gcp">
-      <div class="header">
-        <div class="logo">GCP</div>
-        <h2>Google Cloud Platform & DevOps</h2>
-      </div>
-      <p><strong>Accelerate delivery with GCP and powerful DevOps.</strong></p>
-      <div class="cards">
-        <article class="card">
-          <div class="badge">IaC</div>
-          <div class="badge">Terraform</div>
-          <h4>Infrastructure as Code</h4>
-          <p>Provision GCP reliably: VPCs, GKE, Cloud SQL, Load Balancers — fully automated and version-controlled.</p>
-        </article>
-        <article class="card">
-          <div class="badge">CI/CD</div>
-          <div class="badge">Cloud Build</div>
-          <h4>Continuous Delivery</h4>
-          <p>Automate builds and deployments with Cloud Build, Spinnaker, or GitHub Actions — zero-downtime rollouts.</p>
-        </article>
-        <article class="card">
-          <div class="badge">SRE</div>
-          <div class="badge">Monitoring</div>
-          <h4>Reliability & Observability</h4>
-          <p>SLIs, SLOs, and alerts with Cloud Monitoring, Logging, and Operations Suite.</p>
-        </article>
+    <section id="gcp" class="section">
+      <div class="card" style="border-left: 4px solid var(--color-gcp-blue);">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+          <div
+            style="width: 48px; height: 48px; background: linear-gradient(135deg, var(--color-gcp-blue), var(--color-gcp-green)); border-radius: 12px; display: grid; place-items: center; color: white; font-weight: 800; font-size: 1.125rem;">
+            GCP</div>
+          <div>
+            <h3 class="text-gcp" style="margin: 0; font-size: 1.75rem;">Google Cloud Platform</h3>
+            <p style="margin: 0.25rem 0 0 0; color: var(--color-text-muted);">Innovative cloud with powerful DevOps
+              tools</p>
+          </div>
+        </div>
+
+        <div class="cards-grid">
+          <article class="card" style="background: rgba(66,133,244,0.05);">
+            <div class="badges">
+              <span class="badge badge-gcp">IaC</span>
+              <span class="badge badge-gcp">Terraform</span>
+            </div>
+            <h4 class="card-title">Infrastructure as Code</h4>
+            <p class="card-description">
+              Provision GCP reliably: VPCs, GKE, Cloud SQL, Load Balancers — fully automated
+            </p>
+          </article>
+
+          <article class="card" style="background: rgba(66,133,244,0.05);">
+            <div class="badges">
+              <span class="badge badge-gcp">CI/CD</span>
+              <span class="badge badge-gcp">Cloud Build</span>
+            </div>
+            <h4 class="card-title">Continuous Delivery</h4>
+            <p class="card-description">
+              Automate builds and deployments with Cloud Build, Spinnaker, or GitHub Actions
+            </p>
+          </article>
+
+          <article class="card" style="background: rgba(66,133,244,0.05);">
+            <div class="badges">
+              <span class="badge badge-gcp">SRE</span>
+              <span class="badge badge-gcp">Monitoring</span>
+            </div>
+            <h4 class="card-title">Reliability & Observability</h4>
+            <p class="card-description">
+              SLIs, SLOs, and alerts with Cloud Monitoring, Logging, and Operations Suite
+            </p>
+          </article>
+        </div>
+
+        <div style="margin-top: 1.5rem; text-align: center;">
+          <a href="/gcp/" class="btn btn-gcp">Explore GCP Platform →</a>
+        </div>
       </div>
     </section>
 
-    <footer>
-      © 2025 Multi-Cloud DevOps Landing Page — AWS, Azure & GCP Showcase
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <span>© <span id="year"></span> Multi-Cloud DevOps Platform</span>
+        <span>AWS • Azure • GCP • Kubernetes • DevOps Excellence</span>
+      </div>
     </footer>
   </div>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
 </body>
+
 </html>

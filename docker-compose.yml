@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  # API Gateway - Routes requests to cloud-specific services
+  api-gateway:
+    build:
+      context: ./services/api-gateway
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - AWS_SERVICE_URL=http://aws-service:3001
+      - AZURE_SERVICE_URL=http://azure-service:3002
+      - GCP_SERVICE_URL=http://gcp-service:3003
+    depends_on:
+      - aws-service
+      - azure-service
+      - gcp-service
+    networks:
+      - microservices-network
+    restart: unless-stopped
+
+  # AWS Microservice
+  aws-service:
+    build:
+      context: ./services/aws-service
+      dockerfile: Dockerfile
+    container_name: aws-service
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - AWS_REGION=us-east-1
+    networks:
+      - microservices-network
+    restart: unless-stopped
+    volumes:
+      - ./aws:/app/aws:ro
+      - ./styles.css:/app/styles.css:ro
+
+  # Azure Microservice
+  azure-service:
+    build:
+      context: ./services/azure-service
+      dockerfile: Dockerfile
+    container_name: azure-service
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - AZURE_REGION=eastus
+    networks:
+      - microservices-network
+    restart: unless-stopped
+    volumes:
+      - ./azure:/app/azure:ro
+      - ./styles.css:/app/styles.css:ro
+
+  # GCP Microservice
+  gcp-service:
+    build:
+      context: ./services/gcp-service
+      dockerfile: Dockerfile
+    container_name: gcp-service
+    ports:
+      - "3003:3003"
+    environment:
+      - PORT=3003
+      - GCP_REGION=us-central1
+    networks:
+      - microservices-network
+    restart: unless-stopped
+    volumes:
+      - ./gcp:/app/gcp:ro
+      - ./styles.css:/app/styles.css:ro
+
+networks:
+  microservices-network:
+    driver: bridge
+
+# Health check commands for each service:
+# docker-compose exec api-gateway curl http://localhost:3000/health
+# docker-compose exec aws-service curl http://localhost:3001/health
+# docker-compose exec azure-service curl http://localhost:3002/health
+# docker-compose exec gcp-service curl http://localhost:3003/health
